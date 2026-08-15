@@ -1,12 +1,13 @@
-package com.processo.pagamento.demo.domain.model
+package com.processo.pagamento.demo.adapter.out.mensaging
 
-data class Pagamento(
+class PedidoPagamentoEvento(
+    val idPagamento: String,
     val idUser: String,
     val valor: String,
     val moeda: String,
     val metodoPagamento: String,
     val origem: String,
     val destino: String,
-    val idPagamento: String? = "",
-    val status: String? = "CREATED"
-)
+    val status: String,
+) {
+}
