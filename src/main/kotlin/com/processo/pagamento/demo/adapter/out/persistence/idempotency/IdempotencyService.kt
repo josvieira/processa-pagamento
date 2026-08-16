@@ -1,6 +1,5 @@
 package com.processo.pagamento.demo.adapter.out.persistence.idempotency
 
-import com.processo.pagamento.demo.adapter.`in`.web.PagamentoController
 import com.processo.pagamento.demo.config.exceptions.IdempotencyKeyEmProcessamentoException
 import org.slf4j.LoggerFactory
 import org.springframework.dao.DataIntegrityViolationException
@@ -14,7 +13,7 @@ class IdempotencyService(
     private val repository: IdempotencyKeyJpaRepository
 ) {
 
-    private val logger = LoggerFactory.getLogger(PagamentoController::class.java)
+    private val logger = LoggerFactory.getLogger(IdempotencyService::class.java)
 
     // Resultado indica se já existe resposta pronta, ou se é a vez desta requisição processar
     sealed class Resultado {
@@ -52,6 +51,10 @@ class IdempotencyService(
         } catch (ex: DataIntegrityViolationException) {
             // Duas requisições concorrentes bateram no insert ao mesmo tempo;
             // o banco rejeitou a segunda por causa da constraint única — trata como "já em processamento"
+            logger.warn(
+                "Corrida detectada para Idempotency-Key '{}': outra requisição concorrente já iniciou o processamento.",
+                chave
+            )
             throw IdempotencyKeyEmProcessamentoException(chave)
         }
 
@@ -60,9 +63,14 @@ class IdempotencyService(
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     fun concluir(chave: String) {
-        val entity = repository.findByChave(chave) ?: return
+        val entity = repository.findByChave(chave)
+        if (entity == null) {
+            logger.warn("Idempotency-Key '{}' não encontrada ao concluir. Nada foi atualizado.", chave)
+            return
+        }
         entity.status = IdempotencyStatus.CONCLUIDO
         entity.updatedAt = LocalDateTime.now()
         repository.save(entity)
+        logger.info("Idempotency-Key '{}' marcada como concluída.", chave)
     }
 }

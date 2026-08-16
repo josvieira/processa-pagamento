@@ -12,12 +12,18 @@ version = "0.0.1-SNAPSHOT"
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
+		languageVersion = JavaLanguageVersion.of(21)
 	}
 }
 
 repositories {
 	mavenCentral()
+}
+
+dependencyManagement {
+	imports {
+		mavenBom("io.awspring.cloud:spring-cloud-aws-dependencies:4.1.0")
+	}
 }
 
 dependencies {
@@ -27,6 +33,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation(platform("software.amazon.awssdk:bom:2.29.6"))
 	implementation("software.amazon.awssdk:sqs")
+	implementation("io.awspring.cloud:spring-cloud-aws-starter-sqs")
 
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")

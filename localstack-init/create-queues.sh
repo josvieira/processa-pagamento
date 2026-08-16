@@ -24,7 +24,7 @@ awslocal sqs create-queue \
     \"FifoQueue\": \"true\",
     \"ContentBasedDeduplication\": \"false\",
     \"VisibilityTimeout\": \"30\",
-    \"RedrivePolicy\": \"{\\\"deadLetterTargetArn\\\":\\\"$DLQ_ARN\\\",\\\"maxReceiveCount\\\":\\\"5\\\"}\"
+    \"RedrivePolicy\": \"{\\\"deadLetterTargetArn\\\":\\\"$DLQ_ARN\\\",\\\"maxReceiveCount\\\":\\\"3\\\"}\"
   }"
 
 echo "Filas criadas com sucesso."

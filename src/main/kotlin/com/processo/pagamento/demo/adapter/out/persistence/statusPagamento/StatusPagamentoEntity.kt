@@ -1,5 +1,6 @@
-package com.processo.pagamento.demo.adapter.out.persistence.pagamento
+package com.processo.pagamento.demo.adapter.out.persistence.statusPagamento
 
+import com.processo.pagamento.demo.adapter.out.persistence.pagamento.PagamentoEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
@@ -18,7 +19,7 @@ class StatusPagamentoEntity(
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    val id: UUID,
+    val id: UUID? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pagamento", nullable = false)

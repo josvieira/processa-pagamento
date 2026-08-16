@@ -19,3 +19,46 @@ VALUES (
     now()
 )
 ON CONFLICT (chave) DO NOTHING;
+
+INSERT INTO pagamento (id, id_cliente, valor, moeda, metodo_pagamento, origem, destino, created_at)
+VALUES (
+    '660e8400-e29b-41d4-a716-446655440000',
+    'cliente-teste-001',
+    '100.00',
+    'BRL',
+    'PIX',
+    'conta-origem-001',
+    'conta-destino-001',
+    now()
+)
+ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO status_pagamento (id, id_pagamento, status, mensagem, created_at)
+VALUES (
+    '770e8400-e29b-41d4-a716-446655440000',
+    '660e8400-e29b-41d4-a716-446655440000',
+    'CREATED',
+    'Pagamento criado com sucesso',
+    now()
+)
+ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO status_pagamento (id, id_pagamento, status, mensagem, created_at)
+VALUES (
+    '770e8400-e29b-41d4-a716-446655440001',
+    '660e8400-e29b-41d4-a716-446655440000',
+    'PROCESSANDO',
+    'Pagamento em processamento',
+    now()
+)
+ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO status_pagamento (id, id_pagamento, status, mensagem, created_at)
+VALUES (
+    '770e8400-e29b-41d4-a716-446655440002',
+    '660e8400-e29b-41d4-a716-446655440000',
+    'CONCLUIDO',
+    'Pagamento concluído com sucesso',
+    now()
+)
+ON CONFLICT (id) DO NOTHING;

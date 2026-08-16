@@ -1,0 +1,291 @@
+type: spec.insomnia.rest/5.0
+schema_version: "5.1"
+name: Pagamento
+meta:
+  id: wrk_4e24d5a0c5ba49e4b9af59e0387fc6dc
+  created: 1786576214094
+  modified: 1786576214094
+  description: ""
+collection:
+  - url: http://localhost:8080/pagamentos
+    name: Idempotence-key concluida
+    meta:
+      id: req_23154aa13e1744d49e3ba1826abd58d8
+      created: 1786576239149
+      modified: 1786900133833
+      isPrivate: false
+      description: ""
+      sortKey: -1786576239149
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"idUser": "123456",
+        	"valor": "1.200",
+        	"moeda": "real",
+        	"metodoPagamento": "PIX",
+        	"origem": "marketplace",
+        	"destino": "mkplace"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: Idempotency-Key
+        value: teste-concluido-001
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/pagamentos
+    name: Idempotence-key Em processamento
+    meta:
+      id: req_577988ccb4f0485f86a704eda1b35f94
+      created: 1786819504817
+      modified: 1786900128250
+      isPrivate: false
+      description: ""
+      sortKey: -1783207972471
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"idUser": "123456",
+        	"valor": "1.200",
+        	"moeda": "real",
+        	"metodoPagamento": "PIX",
+        	"origem": "marketplace",
+        	"destino": "mkplace"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: Idempotency-Key
+        value: teste-processando-001
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/pagamentos
+    name: Novo Pedido pagamento Nova key
+    meta:
+      id: req_abc3a201351744e8b2baa88fbaa6e5c4
+      created: 1786819591145
+      modified: 1786900115403
+      isPrivate: false
+      description: ""
+      sortKey: -1781523839132
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"idUser": "123456",
+        	"valor": "1.200",
+        	"moeda": "real",
+        	"metodoPagamento": "PIX",
+        	"origem": "marketplace",
+        	"destino": "mkplace"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: Idempotency-Key
+        value: "{% faker 'randomUUID' %}"
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/pagamentos/660e8400-e29b-41d4-a716-446655440000
+    name: Buscar pagamento por id
+    meta:
+      id: req_7e2c93b9d2494365b790d057b95723fe
+      created: 1786828111544
+      modified: 1786832379499
+      isPrivate: false
+      description: ""
+      sortKey: -1786828111544
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/pagamentos
+    name: Novo Pedido pagamento Pix
+    meta:
+      id: req_b00f51caff2d47f5bb39a458cc60d24a
+      created: 1786895182247
+      modified: 1786900076793
+      isPrivate: false
+      description: ""
+      sortKey: -1780681772462.5
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"idUser": "123456",
+        	"valor": "1.200",
+        	"moeda": "real",
+        	"metodoPagamento": "PIX",
+        	"origem": "marketplace",
+        	"destino": "mkplace"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: Idempotency-Key
+        value: "{% faker 'randomUUID' %}"
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/pagamentos
+    name: Novo Pedido pagamento Boleto
+    meta:
+      id: req_4586f61e77cf4529b0efb2cbb5402948
+      created: 1786895196252
+      modified: 1786895203870
+      isPrivate: false
+      description: ""
+      sortKey: -1780260739127.75
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"idUser": "123456",
+        	"valor": "1.200",
+        	"moeda": "real",
+        	"metodoPagamento": "BOLETO",
+        	"origem": "marketplace",
+        	"destino": "mkplace"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: Idempotency-Key
+        value: "{% faker 'randomUUID' %}"
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/pagamentos/b163a474-2d6f-405b-ac81-513a178b7b72
+    name: Buscar pagamento por id 2
+    meta:
+      id: req_d117f1829598470fa2db75b1d915565c
+      created: 1786899637433
+      modified: 1786900094648
+      isPrivate: false
+      description: ""
+      sortKey: -1786702175346.5
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_4ae966c6c8afabcedf279a1a7d03dbea14ad640a
+    created: 1786576214107
+    modified: 1786576214107
+environments:
+  name: Base Environment
+  meta:
+    id: env_4ae966c6c8afabcedf279a1a7d03dbea14ad640a
+    created: 1786576214103
+    modified: 1786576214103
+    isPrivate: false
+spec:
+  meta:
+    id: spc_4a6954e474114523adfff9270f2461fb
+    created: 1786576214099
+    modified: 1786657822596
+testSuites:
+  - name: New Suite
+    meta:
+      id: uts_102b67b72fb64b3b9c3980c2616be345
+      created: 1786802705833
+      modified: 1786802705833
+      sortKey: -1786802705838
+    tests:
+      - name: Idempotency-key em processamento
+        meta:
+          id: ut_66a35d71b0884f5d88405e70a431e53f
+          created: 1786802713946
+          modified: 1786819529251
+          sortKey: -1786802713946
+        requestId: req_577988ccb4f0485f86a704eda1b35f94
+        code: |-
+          const response1 = await insomnia.send();
+          expect(response1.status).to.equal(409);
+      - name: Idenpotency-key concluida
+        meta:
+          id: ut_d03960ec7a5b4c8a8506123a14f839b3
+          created: 1786819475113
+          modified: 1786819557249
+          sortKey: -1786819475113
+        requestId: req_23154aa13e1744d49e3ba1826abd58d8
+        code: |-
+          const response1 = await insomnia.send();
+          expect(response1.status).to.equal(200);
+      - name: Novo Pedido pagamanto Key nova
+        meta:
+          id: ut_ba41e58543de4ec58e87710ee0c736f3
+          created: 1786819646381
+          modified: 1786819679041
+          sortKey: -1786819646381
+        requestId: req_abc3a201351744e8b2baa88fbaa6e5c4
+        code: |-
+          const response1 = await insomnia.send();
+          expect(response1.status).to.equal(201);
+      - name: Busca pagamento e historico de status
+        meta:
+          id: ut_6c85d410755748ffa06ab0b4f1f6e199
+          created: 1786831622242
+          modified: 1786831649553
+          sortKey: -1786831622242
+        requestId: req_7e2c93b9d2494365b790d057b95723fe
+        code: |-
+          const response1 = await insomnia.send();
+          expect(response1.status).to.equal(200);
