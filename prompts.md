@@ -20,4 +20,4 @@ IA utilizada, claude Coude Sonnet 5 medium via web e via CLI
 
 10. Analise a classe consumer PagamentoConsumer, ela está com um schedule para ler as mensagens da fila, foi uma sugestào anterior da IA para controlar algumas regras de negócio e mandar a mensagem manualmente para a dlq, mas não está funcionando direito quando a questão é mannter a mensagem na fila para reprocessamento, seria melhor alterar e começar a fazer o consumo da fila por meio do @SqsListner e colococar o deletation_police como anotação no início da classe.
 
-11. Consolide numa doc o passo a passo das decisões tomadas.
+11. Consolide numa doc o passo a passo das decisões tomadas e adicione o passo a passo para subir e testar a aplicação localmente.
