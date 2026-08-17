@@ -1,3 +1,5 @@
+IA utilizada, claude Coude Sonnet 5 medium via web e via CLI
+
 1 .Construa o desenho básico com a estrutura de classes e pacotespara  uma aplicação que recebe dados por uma controller, salava no banco e envia evento para uma fila, utiliza arquitetura hexagonal.
 
 2 .Gere as instruções de um arquivo docker-compose para que eu consiga subir containers docker para rodar um banco postgres, e também quero criar uma fila fifo com nome processa-pagamento, e também sua DLQ, essa fila fifo terá visibilty timeout de 30s, e o dedublipcation baseado no id da mensagem que é o id que é a chave primária do dado salvo.
@@ -16,4 +18,6 @@
 
 9. sim, faça também o ProcessaPagamentoUseCase
 
-10. Analise a classe consumer PagamentoConsumer, ela está com um schedule para ler as mensagens da fila, foi uma sugestào anterior da IA para controlar algumas regras de negócio e mandar a mensagem manualmente para a dlq, mas não está funcionando direito quando a questão é mannter a mensagem na fila para reprocessamento, seria melhor alterar e começar a fazer o consumo da fila por meio do @SqsListner e colococar o deletation_police como anotação no início da classe 
+10. Analise a classe consumer PagamentoConsumer, ela está com um schedule para ler as mensagens da fila, foi uma sugestào anterior da IA para controlar algumas regras de negócio e mandar a mensagem manualmente para a dlq, mas não está funcionando direito quando a questão é mannter a mensagem na fila para reprocessamento, seria melhor alterar e começar a fazer o consumo da fila por meio do @SqsListner e colococar o deletation_police como anotação no início da classe.
+
+11. Consolide numa doc o passo a passo das decisões tomadas.

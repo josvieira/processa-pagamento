@@ -166,14 +166,7 @@ Aguarde alguns segundos para os containers ficarem saudáveis antes de prossegui
 docker compose ps
 ```
 
-### 3. Ativar o profile local
-
-Para que a aplicação insira os dados de teste (seed) e utilize as configurações voltadas a desenvolvimento local, é necessário ativar o profile `local`. Isso pode ser feito de duas formas:
-
-- Definindo a variável de ambiente `SPRING_PROFILES_ACTIVE=local` antes de rodar a aplicação; ou
-- Configurando o campo de "Active profiles" na configuração de execução da sua IDE, com o valor `local`
-
-### 4. Rodar a aplicação
+### 3. Rodar a aplicação
 
 Pela linha de comando, na raiz do projeto:
 
@@ -185,18 +178,19 @@ Ou, alternativamente, pela IDE (IntelliJ), executando a classe principal da apli
 
 Na primeira subida, o Hibernate cria automaticamente todas as tabelas necessárias no banco de dados.
 
-### 5. Confirmar que a aplicação está no ar
+### 4. Confirmar que a aplicação está no ar
 
 A aplicação sobe, por padrão, na porta `8080`. É possível confirmar acessando qualquer endpoint exposto (por exemplo, o endpoint de criação de pagamento) através do cliente HTTP de sua preferência.
 
-### 6. Testar o fluxo de criação de pagamento
+### 5. Testar o fluxo de criação de pagamento
+
+Para testar a aplicação existe na raiz principal do projeto o arquivo da collection para o insomnia,collection-testes, basta importa-lo e testar as requisições criadas, manualmente, ou executar a suite de testes presente na collection.
 
 Envie uma requisição de criação de pagamento para o endpoint correspondente, informando um header `Idempotency-Key` com um identificador único por tentativa. Repetir a mesma requisição com o mesmo header deve retornar a mesma resposta, sem criar um novo pagamento.
 
-### 7. Acompanhar o processamento assíncrono
+### 6. Acompanhar o processamento assíncrono
 
-O consumer da aplicação realiza a leitura periódica da fila automaticamente, não sendo necessária nenhuma ação manual. Para inspecionar o conteúdo das mensagens na fila sem depender apenas dos logs da aplicação, é possível consultar o endpoint de depuração do próprio LocalStack, apontando para a URL da fila configurada.
-
+O consumer da aplicação realiza a leitura periódica da fila automaticamente, não sendo necessária nenhuma ação manual.
 ### 8. Encerrar o ambiente
 
 Para parar os containers mantendo os dados salvos:
